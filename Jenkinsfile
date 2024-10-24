@@ -1,22 +1,9 @@
 pipeline {
-    agent any
-    options {
-        skipStagesAfterUnstable()
-    }
+    agent { docker { image 'python:3.13.0-alpine3.20' } }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying'
+                sh 'python --version'
             }
         }
     }
