@@ -25,9 +25,9 @@ pipeline {
             echo 'Things were different before...'
         }
         failure {
-        mail to: 'salim.abdellouche@gmail.com',
-             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
+            mail to: 'salim.abdellouche@gmail.com',
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
