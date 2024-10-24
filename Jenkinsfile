@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('No-op') {
             steps {
-                sh 'exit 1'
+                sh 'exit 1'  // Cela provoquera un échec
             }
         }
     }
@@ -20,14 +20,12 @@ pipeline {
         }
         failure {
             echo 'I failed :('
+            mail to: 'salim.abdellouche@gmail.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
         }
         changed {
             echo 'Things were different before...'
-        }
-        failure {
-            mail to: 'salim.abdellouche@gmail.com',
-            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-            body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
