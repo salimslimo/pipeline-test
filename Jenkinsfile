@@ -1,9 +1,13 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.13.0-alpine3.20'
+        }
+    }
     stages {
-        stage('Test') {
+        stage('build') {
             steps {
-                sh 'cat /var/jenkins_home/secrets/master.key'
+                sh 'python --version'
             }
         }
     }
