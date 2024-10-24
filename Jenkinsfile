@@ -1,25 +1,23 @@
 pipeline {
     agent any
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('No-op') {
+        stage('Build') {
             steps {
-                sh 'exit 1'  // Cela provoquera un échec
+                echo 'Building'
             }
         }
-    }
-    post {
-        always {
-            echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
+        stage('Test') {
+            steps {
+                echo 'Testing'
+            }
         }
-        success {
-            echo 'I succeeded!'
-        }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        changed {
-            echo 'Things were different before...'
+        stage('Deploy') {
+            steps {
+                echo 'Deploying'
+            }
         }
     }
 }
